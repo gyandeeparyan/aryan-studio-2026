@@ -1,7 +1,11 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Check, ArrowRight, Zap } from "lucide-react";
+import { useTheme } from "@/lib/ThemeProvider";
 
 const plans = [
   {
@@ -63,23 +67,38 @@ const plans = [
 ];
 
 export default function Pricing() {
+  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
-    <section id="pricing" className="bg-[#fafafa] py-24 overflow-hidden">
-      <div className="max-w-[1200px] mx-auto px-6">
+    <section suppressHydrationWarning id="pricing" className={`${theme === "dark" ? "bg-[#0c0a09]" : "bg-[#fafafa]"} py-24 overflow-hidden transition-colors`}>
+      <div className="max-w-300 mx-auto px-6">
         {/* Header */}
         <div className="flex items-center gap-3 mb-5">
-          <span className="text-[11px] font-semibold tracking-[0.12em] uppercase text-[#777169] bg-[#f0efed] border border-[#e7e5e4] px-3 py-1.5 rounded-full">
+          <span className={`text-[11px] font-semibold tracking-[0.12em] uppercase ${
+            theme === "dark"
+              ? "text-[#9a9a9a] bg-[#2a2a2a] border border-[#404040]"
+              : "text-[#777169] bg-[#f0efed] border border-[#e7e5e4]"
+          } px-3 py-1.5 rounded-full`}>
             Pricing
           </span>
         </div>
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
           <h2
-            className="text-[clamp(28px,4.5vw,48px)] leading-[1.08] tracking-[-0.02em] text-[#0c0a09] max-w-[18ch]"
+            className={`text-[clamp(28px,4.5vw,48px)] leading-[1.08] tracking-[-0.02em] ${
+              theme === "dark" ? "text-white" : "text-[#0c0a09]"
+            } max-w-[18ch]`}
             style={{ fontFamily: "var(--font-garamond)", fontWeight: 400 }}
           >
             Transparent pricing, real value
           </h2>
-          <p className="text-[15px] leading-[1.6] text-[#777169] max-w-[38ch] md:text-right">
+          <p className={`text-[15px] leading-[1.6] ${
+            theme === "dark" ? "text-[#9a9a9a]" : "text-[#777169]"
+          } max-w-[38ch] md:text-right`}>
             Competitive rates tailored for Patna&apos;s market — no hidden
             costs, no surprises.
           </p>
@@ -92,12 +111,18 @@ export default function Pricing() {
               key={plan.name}
               className={`relative rounded-2xl border flex flex-col overflow-hidden ${
                 plan.featured
-                  ? "bg-[#0c0a09] border-[#292524]"
+                  ? theme === "dark"
+                    ? "bg-[#1a1a1a] border-[#4a9d6f]"
+                    : "bg-[#0c0a09] border-[#292524]"
+                  : theme === "dark"
+                  ? "bg-[#1a1a1a] border-[#404040]"
                   : "bg-white border-[#e7e5e4]"
               }`}
             >
               {plan.featured && (
-                <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#f4c5a8] to-transparent opacity-60" />
+                <div className={`absolute top-0 inset-x-0 h-px bg-linear-to-r from-transparent ${
+                  theme === "dark" ? "via-[#4a9d6f]" : "via-[#f4c5a8]"
+                } to-transparent opacity-60`} />
               )}
 
               {/* Atmospheric orb for featured */}
@@ -116,13 +141,23 @@ export default function Pricing() {
                 <div className="flex items-center justify-between">
                   <span
                     className={`text-[13px] font-semibold tracking-[0.08em] uppercase ${
-                      plan.featured ? "text-[#a8a29e]" : "text-[#777169]"
+                      plan.featured
+                        ? theme === "dark"
+                          ? "text-[#9a9a9a]"
+                          : "text-[#a8a29e]"
+                        : theme === "dark"
+                        ? "text-[#9a9a9a]"
+                        : "text-[#777169]"
                     }`}
                   >
                     {plan.name}
                   </span>
                   {plan.featured && (
-                    <span className="inline-flex items-center gap-1 text-[11px] font-semibold tracking-[0.06em] text-[#0c0a09] bg-[#f4c5a8] px-2.5 py-1 rounded-full">
+                    <span className={`inline-flex items-center gap-1 text-[11px] font-semibold tracking-[0.06em] px-2.5 py-1 rounded-full ${
+                      theme === "dark"
+                        ? "text-[#0c0a09] bg-[#4a9d6f]"
+                        : "text-[#0c0a09] bg-[#f4c5a8]"
+                    }`}>
                       <Zap size={9} strokeWidth={2.5} /> Popular
                     </span>
                   )}
@@ -132,7 +167,7 @@ export default function Pricing() {
                 <div className="flex flex-col gap-1">
                   <span
                     className={`text-[40px] leading-none tracking-[-0.03em] ${
-                      plan.featured ? "text-white" : "text-[#0c0a09]"
+                      plan.featured || theme === "dark" ? "text-white" : "text-[#0c0a09]"
                     }`}
                     style={{
                       fontFamily: "var(--font-garamond)",
@@ -143,7 +178,13 @@ export default function Pricing() {
                   </span>
                   <span
                     className={`text-[13px] ${
-                      plan.featured ? "text-[#a8a29e]" : "text-[#777169]"
+                      plan.featured
+                        ? theme === "dark"
+                          ? "text-[#9a9a9a]"
+                          : "text-[#a8a29e]"
+                        : theme === "dark"
+                        ? "text-[#9a9a9a]"
+                        : "text-[#777169]"
                     }`}
                   >
                     {plan.period}
@@ -152,8 +193,14 @@ export default function Pricing() {
 
                 {/* Tagline */}
                 <p
-                  className={`text-[14px] leading-[1.5] ${
-                    plan.featured ? "text-[#a8a29e]" : "text-[#4e4e4e]"
+                  className={`text-[14px] leading-normal ${
+                    plan.featured
+                      ? theme === "dark"
+                        ? "text-[#9a9a9a]"
+                        : "text-[#a8a29e]"
+                      : theme === "dark"
+                      ? "text-[#b0b0b0]"
+                      : "text-[#4e4e4e]"
                   }`}
                 >
                   {plan.tagline}
@@ -162,7 +209,13 @@ export default function Pricing() {
                 {/* Divider */}
                 <div
                   className={`h-px ${
-                    plan.featured ? "bg-white/10" : "bg-[#e7e5e4]"
+                    plan.featured
+                      ? theme === "dark"
+                        ? "bg-white/10"
+                        : "bg-white/10"
+                      : theme === "dark"
+                      ? "bg-[#404040]"
+                      : "bg-[#e7e5e4]"
                   }`}
                 />
 
@@ -173,13 +226,25 @@ export default function Pricing() {
                       <Check
                         size={14}
                         className={`mt-0.5 shrink-0 ${
-                          plan.featured ? "text-[#f4c5a8]" : "text-[#292524]"
+                          plan.featured
+                            ? theme === "dark"
+                              ? "text-[#4a9d6f]"
+                              : "text-[#f4c5a8]"
+                            : theme === "dark"
+                            ? "text-[#4a9d6f]"
+                            : "text-[#292524]"
                         }`}
                         strokeWidth={2.5}
                       />
                       <span
-                        className={`text-[13px] leading-[1.5] ${
-                          plan.featured ? "text-[#a8a29e]" : "text-[#4e4e4e]"
+                        className={`text-[13px] leading-normal ${
+                          plan.featured
+                            ? theme === "dark"
+                              ? "text-[#9a9a9a]"
+                              : "text-[#a8a29e]"
+                            : theme === "dark"
+                            ? "text-[#b0b0b0]"
+                            : "text-[#4e4e4e]"
                         }`}
                       >
                         {feature}
@@ -193,12 +258,16 @@ export default function Pricing() {
                   asChild
                   className={`rounded-full h-10 text-[14px] font-medium w-full mt-2 shadow-none transition-all duration-200 ${
                     plan.featured
-                      ? "bg-white text-[#0c0a09] hover:bg-[#f0efed]"
+                      ? theme === "dark"
+                        ? "bg-[#4a9d6f] text-white hover:bg-[#3a8d5f]"
+                        : "bg-white text-[#0c0a09] hover:bg-[#f0efed]"
+                      : theme === "dark"
+                      ? "bg-[#4a9d6f] text-white hover:bg-[#3a8d5f]"
                       : "bg-[#292524] text-white hover:bg-[#0c0a09]"
                   }`}
                 >
                   <Link href="#contact">
-                    {plan.cta} <ArrowRight size={13} className="ml-1.5" />
+                    {plan.cta}
                   </Link>
                 </Button>
               </div>
@@ -207,11 +276,17 @@ export default function Pricing() {
         </div>
 
         {/* Note */}
-        <p className="text-center text-[13px] text-[#a8a29e] mt-8">
+        <p className={`text-center text-[13px] mt-8 ${
+          theme === "dark" ? "text-[#9a9a9a]" : "text-[#a8a29e]"
+        }`}>
           All prices are in INR and exclusive of GST. Need something custom?{" "}
           <Link
             href="#contact"
-            className="text-[#292524] underline underline-offset-2 hover:text-[#0c0a09]"
+            className={`underline underline-offset-2 transition-colors ${
+              theme === "dark"
+                ? "text-[#4a9d6f] hover:text-[#5aad7f]"
+                : "text-[#292524] hover:text-[#0c0a09]"
+            }`}
           >
             Let&apos;s talk.
           </Link>

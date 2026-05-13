@@ -1,5 +1,9 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import { Badge } from "@/components/ui/badge";
 import { ArrowUpRight } from "lucide-react";
+import { useTheme } from "@/lib/ThemeProvider";
 
 const projects = [
   {
@@ -41,23 +45,38 @@ const projects = [
 ];
 
 export default function Projects() {
+  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
-    <section id="projects" className="bg-[#f5f5f5] py-24">
-      <div className="max-w-[1200px] mx-auto px-6">
+    <section suppressHydrationWarning id="projects" className={`${theme === "dark" ? "bg-[#0c0a09]" : "bg-[#f5f5f5]"} py-24 transition-colors`}>
+      <div className="max-w-300 mx-auto px-6">
         {/* Header */}
         <div className="flex items-center gap-3 mb-5">
-          <span className="text-[11px] font-semibold tracking-[0.12em] uppercase text-[#777169] bg-[#f0efed] border border-[#e7e5e4] px-3 py-1.5 rounded-full">
+          <span className={`text-[11px] font-semibold tracking-[0.12em] uppercase ${
+            theme === "dark"
+              ? "text-[#9a9a9a] bg-[#2a2a2a] border border-[#404040]"
+              : "text-[#777169] bg-[#f0efed] border border-[#e7e5e4]"
+          } px-3 py-1.5 rounded-full`}>
             Our Work
           </span>
         </div>
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
           <h2
-            className="text-[clamp(28px,4.5vw,48px)] leading-[1.08] tracking-[-0.02em] text-[#0c0a09] max-w-[18ch]"
+            className={`text-[clamp(28px,4.5vw,48px)] leading-[1.08] tracking-[-0.02em] ${
+              theme === "dark" ? "text-white" : "text-[#0c0a09]"
+            } max-w-[18ch]`}
             style={{ fontFamily: "var(--font-garamond)", fontWeight: 400 }}
           >
             Projects we&apos;re proud of
           </h2>
-          <p className="text-[15px] leading-[1.6] text-[#777169] max-w-[36ch] md:text-right">
+          <p className={`text-[15px] leading-[1.6] ${
+            theme === "dark" ? "text-[#9a9a9a]" : "text-[#777169]"
+          } max-w-[36ch] md:text-right`}>
             A selection of our recent work across industries and technologies.
           </p>
         </div>
@@ -67,7 +86,11 @@ export default function Projects() {
           {projects.map((project) => (
             <div
               key={project.title}
-              className="group relative bg-[#fafafa] rounded-2xl border border-[#e7e5e4] overflow-hidden hover:shadow-[0_4px_24px_rgba(0,0,0,0.07)] transition-shadow duration-300 cursor-pointer"
+              className={`group relative ${
+                theme === "dark"
+                  ? "bg-[#1a1a1a] border-[#404040] hover:shadow-[0_4px_24px_rgba(0,0,0,0.3)]"
+                  : "bg-[#fafafa] border-[#e7e5e4] hover:shadow-[0_4px_24px_rgba(0,0,0,0.07)]"
+              } rounded-2xl border overflow-hidden transition-shadow duration-300 cursor-pointer`}
             >
               {/* Gradient orb background */}
               <div
@@ -78,7 +101,9 @@ export default function Projects() {
               {/* Spacer (visual canvas) */}
               <div className="relative h-44 flex items-center justify-center">
                 <span
-                  className="text-[72px] leading-none tracking-[-0.04em] text-[#0c0a09]/8 select-none"
+                  className={`text-[72px] leading-none tracking-[-0.04em] ${
+                    theme === "dark" ? "text-white/5" : "text-[#0c0a09]/8"
+                  } select-none`}
                   style={{ fontFamily: "var(--font-garamond)", fontWeight: 400 }}
                 >
                   {project.title.charAt(0)}
@@ -86,37 +111,63 @@ export default function Projects() {
               </div>
 
               {/* Content */}
-              <div className="relative z-10 p-7 border-t border-[#e7e5e4] bg-white/60 backdrop-blur-sm">
+              <div className={`relative z-10 p-7 ${
+                theme === "dark"
+                  ? "border-t border-[#404040] bg-[#0c0a09]/80 backdrop-blur-sm"
+                  : "border-t border-[#e7e5e4] bg-white/60 backdrop-blur-sm"
+              }`}>
                 <div className="flex items-start justify-between mb-3">
                   <div className="flex items-center gap-2">
-                    <span className="text-[11px] font-semibold tracking-[0.1em] uppercase text-[#777169] bg-[#f0efed] border border-[#e7e5e4] px-2.5 py-1 rounded-full">
+                    <span className={`text-[11px] font-semibold tracking-widest uppercase px-2.5 py-1 rounded-full border ${
+                      theme === "dark"
+                        ? "text-[#9a9a9a] bg-[#2a2a2a] border-[#404040]"
+                        : "text-[#777169] bg-[#f0efed] border-[#e7e5e4]"
+                    }`}>
                       {project.category}
                     </span>
-                    <span className="text-[11px] text-[#a8a29e] font-medium">
+                    <span className={`text-[11px] font-medium ${
+                      theme === "dark" ? "text-[#707070]" : "text-[#a8a29e]"
+                    }`}>
                       {project.year}
                     </span>
                   </div>
-                  <div className="w-7 h-7 rounded-full border border-[#e7e5e4] bg-white flex items-center justify-center group-hover:bg-[#292524] group-hover:border-[#292524] transition-all duration-200">
+                  <div className={`w-7 h-7 rounded-full border flex items-center justify-center transition-all duration-200 ${
+                    theme === "dark"
+                      ? "border-[#404040] bg-[#1a1a1a] group-hover:bg-[#4a9d6f] group-hover:border-[#4a9d6f]"
+                      : "border-[#e7e5e4] bg-white group-hover:bg-[#292524] group-hover:border-[#292524]"
+                  }`}>
                     <ArrowUpRight
                       size={13}
-                      className="text-[#777169] group-hover:text-white transition-colors duration-200"
+                      className={`transition-colors duration-200 ${
+                        theme === "dark"
+                          ? "text-[#707070] group-hover:text-white"
+                          : "text-[#777169] group-hover:text-white"
+                      }`}
                     />
                   </div>
                 </div>
                 <h3
-                  className="text-[20px] leading-tight tracking-[-0.01em] text-[#0c0a09] mb-2.5"
+                  className={`text-[20px] leading-tight tracking-[-0.01em] ${
+                    theme === "dark" ? "text-white" : "text-[#0c0a09]"
+                  } mb-2.5`}
                   style={{ fontFamily: "var(--font-garamond)", fontWeight: 400 }}
                 >
                   {project.title}
                 </h3>
-                <p className="text-[13px] leading-[1.6] text-[#4e4e4e] mb-4">
+                <p className={`text-[13px] leading-[1.6] ${
+                  theme === "dark" ? "text-[#9a9a9a]" : "text-[#4e4e4e]"
+                } mb-4`}>
                   {project.description}
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {project.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="text-[11px] font-medium text-[#4e4e4e] bg-[#f0efed] px-2.5 py-1 rounded-full border border-[#e7e5e4]"
+                      className={`text-[11px] font-medium px-2.5 py-1 rounded-full border ${
+                        theme === "dark"
+                          ? "text-[#9a9a9a] bg-[#2a2a2a] border-[#404040]"
+                          : "text-[#4e4e4e] bg-[#f0efed] border-[#e7e5e4]"
+                      }`}
                     >
                       {tag}
                     </span>
@@ -130,3 +181,4 @@ export default function Projects() {
     </section>
   );
 }
+

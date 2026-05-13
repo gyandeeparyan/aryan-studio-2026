@@ -1,5 +1,7 @@
 import { Inter, EB_Garamond } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "@/lib/ThemeProvider";
+import { companyInfo } from "@/lib/config";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -15,10 +17,9 @@ const garamond = EB_Garamond({
 });
 
 export const metadata = {
-  title: "Aryan Studio | Web Development Services in Patna",
-  description:
-    "Aryan Studio is Patna's premier freelance web development agency. We craft modern, high-performance websites and web apps that drive real results for your business.",
-  keywords: "web development Patna, website design Bihar, freelance agency Patna, Aryan Studio",
+  title: companyInfo.seo.title,
+  description: companyInfo.seo.description,
+  keywords: companyInfo.seo.keywords,
 };
 
 export default function RootLayout({ children }) {
@@ -26,8 +27,11 @@ export default function RootLayout({ children }) {
     <html
       lang="en"
       className={`${inter.variable} ${garamond.variable} antialiased`}
+      suppressHydrationWarning
     >
-      <body className="min-h-full">{children}</body>
+      <body className="min-h-full bg-white dark:bg-[#0c0a09] text-[#0c0a09] dark:text-white transition-colors">
+        <ThemeProvider>{children}</ThemeProvider>
+      </body>
     </html>
   );
 }

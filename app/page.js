@@ -8,6 +8,7 @@ import Team from "@/components/Team";
 import Contact from "@/components/Contact";
 import CtaBand from "@/components/CtaBand";
 import Footer from "@/components/Footer";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 export default function Home() {
   return (
@@ -19,11 +20,11 @@ export default function Home() {
         <About />
         <Projects />
         <Pricing />
-        <Team />
         <Contact />
         <CtaBand />
       </main>
       <Footer />
+      <WhatsAppButton />
     </>
   );
 }
