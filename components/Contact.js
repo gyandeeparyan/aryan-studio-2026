@@ -156,6 +156,7 @@ export default function Contact() {
                       Full Name *
                     </label>
                     <Input
+                      suppressHydrationWarning
                       name="name"
                       value={form.name}
                       onChange={handleChange}
@@ -175,6 +176,7 @@ export default function Contact() {
                       Email Address *
                     </label>
                     <Input
+                      suppressHydrationWarning
                       type="email"
                       name="email"
                       value={form.email}
@@ -197,6 +199,7 @@ export default function Contact() {
                       Phone Number
                     </label>
                     <Input
+                      suppressHydrationWarning
                       type="tel"
                       name="phone"
                       value={form.phone}
@@ -216,6 +219,7 @@ export default function Contact() {
                       Project Type
                     </label>
                     <select
+                      suppressHydrationWarning
                       name="projectType"
                       value={form.projectType}
                       onChange={handleChange}
@@ -241,6 +245,7 @@ export default function Contact() {
                     Tell us about your project *
                   </label>
                   <Textarea
+                    suppressHydrationWarning
                     name="message"
                     value={form.message}
                     onChange={handleChange}
@@ -255,6 +260,7 @@ export default function Contact() {
                   />
                 </div>
                 <Button
+                  suppressHydrationWarning
                   type="submit"
                   className={`rounded-full text-white text-[14px] font-medium h-11 px-6 transition-colors duration-200 shadow-none w-fit mt-1 ${
                     theme === "dark"
