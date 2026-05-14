@@ -116,7 +116,6 @@ export default function Hero() {
             <p className={`text-[16px] leading-[1.7] tracking-[0.01em] ${
               theme === "dark" ? "text-[#b0b0b0]" : "text-[#4e4e4e]"
             } max-w-[50ch] mb-8`}>
-              From {displayLocation} to the world —
               <span className={`${
                 theme === "dark"
                   ? "text-[#4a9d6f] font-semibold"

@@ -134,17 +134,48 @@ export default function Navbar() {
           </Button>
         </div>
 
-        {/* Mobile Toggle */}
-        <button
-          suppressHydrationWarning
-          className={`md:hidden p-1 ${
-            theme === "dark" ? "text-white" : "text-[#0c0a09]"
-          }`}
-          onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Toggle menu"
-        >
-          {mobileOpen ? <X size={20} /> : <Menu size={20} />}
-        </button>
+        {/* Mobile Controls */}
+        <div className="md:hidden flex items-center gap-2">
+          <button
+            suppressHydrationWarning
+            onClick={() => switchLanguage(language === "en" ? "hi" : "en")}
+            className={`p-2 rounded-lg transition-colors flex items-center gap-1 ${
+              theme === "dark"
+                ? "bg-[#1a1a1a] text-[#b0b0b0] hover:bg-[#2a2a2a]"
+                : "bg-[#f0efed] text-[#777169] hover:bg-[#e7e5e4]"
+            }`}
+            aria-label="Switch language"
+          >
+            <Globe size={16} />
+            <span className="text-[11px] font-medium leading-none">{language.toUpperCase()}</span>
+          </button>
+
+          <button
+            suppressHydrationWarning
+            onClick={toggleTheme}
+            className={`p-2 rounded-lg transition-colors ${
+              theme === "dark"
+                ? "bg-[#1a1a1a] text-[#b0b0b0] hover:bg-[#2a2a2a]"
+                : "bg-[#f0efed] text-[#777169] hover:bg-[#e7e5e4]"
+            }`}
+            aria-label="Toggle dark mode"
+          >
+            {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
+          </button>
+
+          <button
+            suppressHydrationWarning
+            className={`p-2 rounded-lg transition-colors ${
+              theme === "dark"
+                ? "bg-[#1a1a1a] text-[#b0b0b0] hover:bg-[#2a2a2a]"
+                : "bg-[#f0efed] text-[#777169] hover:bg-[#e7e5e4]"
+            }`}
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label="Toggle menu"
+          >
+            {mobileOpen ? <X size={18} /> : <Menu size={18} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
@@ -172,37 +203,10 @@ export default function Navbar() {
           <div suppressHydrationWarning className="flex items-center gap-2 mt-2 pt-4 border-t flex-wrap" style={{
             borderColor: theme === "dark" ? "#404040" : "#e7e5e4"
           }}>
-            <button
-              suppressHydrationWarning
-              onClick={() => {
-                switchLanguage(language === "en" ? "hi" : "en");
-              }}
-              className={`p-2 rounded-lg text-sm transition-colors flex items-center gap-1 flex-1 justify-center ${
-                theme === "dark"
-                  ? "bg-[#1a1a1a] text-[#b0b0b0] hover:bg-[#2a2a2a]"
-                  : "bg-[#f0efed] text-[#777169] hover:bg-[#e7e5e4]"
-              }`}
-              aria-label="Switch language"
-            >
-              <Globe size={16} />
-              <span>{language === "en" ? "हिंदी" : "English"}</span>
-            </button>
-            <button
-              suppressHydrationWarning
-              onClick={toggleTheme}
-              className={`p-2 rounded-lg transition-colors flex-1 ${
-                theme === "dark"
-                  ? "bg-[#1a1a1a] text-[#b0b0b0] hover:bg-[#2a2a2a]"
-                  : "bg-[#f0efed] text-[#777169] hover:bg-[#e7e5e4]"
-              }`}
-              aria-label="Toggle dark mode"
-            >
-              {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
-            </button>
             <Button
               suppressHydrationWarning
               asChild
-              className={`rounded-full text-white text-sm font-medium px-4 h-9 transition-colors duration-200 shadow-none flex-1 ${
+              className={`rounded-full text-white text-sm font-medium px-4 h-9 transition-colors duration-200 shadow-none w-full ${
                 theme === "dark"
                   ? "bg-[#4a9d6f] hover:bg-[#3a8d5f]"
                   : "bg-[#292524] hover:bg-[#0c0a09]"

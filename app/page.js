@@ -21,7 +21,6 @@ export default function Home() {
         <About />
         <Projects />
         <Pricing />
-        <Team />
         <Faqs />
         <Contact />
         <CtaBand />
