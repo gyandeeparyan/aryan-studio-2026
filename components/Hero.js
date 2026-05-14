@@ -5,11 +5,14 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, MapPin } from "lucide-react";
 import { useTheme } from "@/lib/ThemeProvider";
+import { useI18n } from "@/lib/I18nProvider";
 import { useGeolocation } from "@/lib/useGeolocation";
 import { companyInfo } from "@/lib/config";
+import TerminalBox from "@/components/TerminalBox";
 
 export default function Hero() {
   const { theme } = useTheme();
+  const { t, tReplace, mounted: i18nMounted } = useI18n();
   const { placeName, loading: geoLoading } = useGeolocation();
   const [mounted, setMounted] = useState(false);
 
@@ -17,7 +20,32 @@ export default function Hero() {
     setMounted(true);
   }, []);
 
+  if (!mounted) {
+    return null;
+  }
+
   const displayLocation = placeName || companyInfo.contact.address;
+
+  // Helper to highlight AI in text
+  const highlightAI = (text) => {
+    const parts = text.split(/(\bAI\b)/g);
+    return parts.map((part, idx) =>
+      part === "AI" ? (
+        <span
+          key={idx}
+          className={`${
+            theme === "dark"
+              ? "text-[#4a9d6f] font-semibold"
+              : "text-[#292524] font-semibold"
+          }`}
+        >
+          {part}
+        </span>
+      ) : (
+        part
+      )
+    );
+  };
 
   return (
     <section
@@ -60,57 +88,86 @@ export default function Hero() {
               : "text-[#777169] bg-[#f0efed] border border-[#e7e5e4]"
           } px-3 py-1.5 rounded-full`}>
             <MapPin size={10} strokeWidth={2.5} />
-            {displayLocation} · Available for Projects
+            {displayLocation} · {t("common.availableForProjects", "Available for Projects")}
           </span>
         </div>
 
-        {/* Main headline */}
-        <h1
-          className={`text-[clamp(40px,7vw,88px)] leading-[1.03] tracking-[-0.03em] ${
-            theme === "dark" ? "text-white" : "text-[#0c0a09]"
-          } max-w-[14ch] mb-7`}
-          style={{ fontFamily: "var(--font-garamond)", fontWeight: 400 }}
-        >
-          We Build Digital Experiences That Actually Work.
-        </h1>
+        {/* Grid Layout for Desktop */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-10">
+          {/* Left side - Text Content */}
+          <div>
+            {/* Main headline */}
+            <h1
+              className={`text-[clamp(40px,7vw,72px)] leading-[1.08] tracking-[-0.03em] ${
+                theme === "dark" ? "text-white" : "text-[#0c0a09]"
+              } max-w-[14ch] mb-6`}
+              style={{ fontFamily: "var(--font-garamond)", fontWeight: 400 }}
+            >
+              {i18nMounted ? (
+                <>
+                Aryan Studio
+                </>
+              ) : (
+                "Aryan Studio"
+              )}
+            </h1>
 
-        {/* Sub-headline */}
-        <p className={`text-[17px] leading-[1.6] tracking-[0.01em] ${
-          theme === "dark" ? "text-[#b0b0b0]" : "text-[#4e4e4e]"
-        } max-w-[48ch] mb-10`}>
-          From {displayLocation} to the world — {companyInfo.name} crafts fast, modern websites
-          and web applications that drive real results for your business.
-        </p>
+            {/* Sub-headline with AI highlight and company highlight */}
+            <p className={`text-[16px] leading-[1.7] tracking-[0.01em] ${
+              theme === "dark" ? "text-[#b0b0b0]" : "text-[#4e4e4e]"
+            } max-w-[50ch] mb-8`}>
+              From {displayLocation} to the world —
+              <span className={`${
+                theme === "dark"
+                  ? "text-[#4a9d6f] font-semibold"
+                  : "text-[#292524] font-semibold"
+              }`}> {companyInfo.name}</span> crafts fast, modern websites
+              and web applications that drive real results for your business. We specialize in building{" "}
+              {highlightAI("AI")}-powered apps with{" "}
+              {highlightAI("AI")} models integrated.
+            </p>
 
-        {/* CTAs */}
-        <div className="flex flex-wrap items-center gap-4">
-          <Button
-            asChild
-            className={`rounded-full text-white text-[15px] font-medium px-6 h-11 transition-colors duration-200 shadow-none ${
-              theme === "dark"
-                ? "bg-[#4a9d6f] hover:bg-[#3a8d5f]"
-                : "bg-[#292524] hover:bg-[#0c0a09]"
-            }`}
-          >
-            <Link href="#contact">
-              Start a Project
-            </Link>
-          </Button>
-          <Button
-            asChild
-            variant="outline"
-            className={`rounded-full text-[15px] font-medium px-6 h-11 transition-all duration-200 shadow-none ${
-              theme === "dark"
-                ? "border-[#404040] text-white hover:bg-[#1a1a1a] hover:border-[#707070]"
-                : "border-[#d6d3d1] text-[#292524] hover:bg-[#f0efed] hover:border-[#292524]"
-            }`}
-          >
-            <Link href="#projects">View Our Work</Link>
-          </Button>
+            {/* CTAs */}
+            <div className="flex flex-wrap items-center gap-4">
+              <Button
+                asChild
+                className={`rounded-full text-white text-[15px] font-medium px-6 h-11 transition-colors duration-200 shadow-none ${
+                  theme === "dark"
+                    ? "bg-[#4a9d6f] hover:bg-[#3a8d5f]"
+                    : "bg-[#292524] hover:bg-[#0c0a09]"
+                }`}
+              >
+                <Link href="#contact">
+                  {t("common.startProject", "Start a Project")}
+                </Link>
+              </Button>
+              <Button
+                asChild
+                variant="outline"
+                className={`rounded-full text-[15px] font-medium px-6 h-11 transition-all duration-200 shadow-none ${
+                  theme === "dark"
+                    ? "border-[#404040] text-white hover:bg-[#1a1a1a] hover:border-[#707070]"
+                    : "border-[#d6d3d1] text-[#292524] hover:bg-[#f0efed] hover:border-[#292524]"
+                }`}
+              >
+                <Link href="#projects">{t("common.viewWork", "View Our Work")}</Link>
+              </Button>
+            </div>
+          </div>
+
+          {/* Right side - Terminal Box (Hidden on mobile) */}
+          <div className="hidden lg:block">
+            <TerminalBox />
+          </div>
+        </div>
+
+        {/* Terminal Box for Mobile - Display below text */}
+        <div className="lg:hidden mb-10">
+          <TerminalBox />
         </div>
 
         {/* Metrics strip */}
-        <div className={`flex flex-wrap gap-10 mt-20 pt-10 ${
+        <div className={`flex flex-wrap gap-10 pt-10 ${
           theme === "dark" ? "border-[#404040]" : "border-[#e7e5e4]"
         } border-t`}>
           {companyInfo.stats.map((item) => (
@@ -138,7 +195,7 @@ export default function Hero() {
         <span className={`text-[11px] font-medium tracking-[0.15em] uppercase ${
           theme === "dark" ? "text-[#707070]" : "text-[#777169]"
         }`}>
-          Scroll
+          {t("common.scroll", "Scroll")}
         </span>
         <div className={`w-px h-8 ${theme === "dark" ? "bg-[#707070]" : "bg-[#777169]"}`} />
       </div>

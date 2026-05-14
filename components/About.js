@@ -4,21 +4,27 @@ import { useState, useEffect } from "react";
 import { Badge } from "@/components/ui/badge";
 import { CheckCircle2 } from "lucide-react";
 import { useTheme } from "@/lib/ThemeProvider";
+import { useI18n } from "@/lib/I18nProvider";
 
-const highlights = [
-  "Founded in 2022, grown from a solo freelancer to a full team",
-  "Delivered 50+ projects across retail, education, tourism & tech",
-  "Deep understanding of Bihar's local business landscape",
-  "Trusted by clients from Patna, Delhi, and beyond",
+const highlightKeys = [
+  "about.labels.h1",
+  "about.labels.h2",
+  "about.labels.h3",
+  "about.labels.h4",
 ];
 
 export default function About() {
   const { theme } = useTheme();
+  const { t, mounted: i18nMounted } = useI18n();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  if (!mounted || !i18nMounted) {
+    return null;
+  }
 
   return (
     <section suppressHydrationWarning id="about" className={`${theme === "dark" ? "bg-[#0c0a09]" : "bg-[#f5f5f5]"} py-24 overflow-hidden transition-colors`}>
@@ -31,7 +37,7 @@ export default function About() {
                 ? "text-[#9a9a9a] bg-[#2a2a2a] border border-[#404040]"
                 : "text-[#777169] bg-[#f0efed] border border-[#e7e5e4]"
             } px-3 py-1.5 rounded-full mb-6`}>
-              About Us
+              {t("common.aboutUs", "About Us")}
             </span>
             <h2
               className={`text-[clamp(28px,4vw,44px)] leading-[1.1] tracking-[-0.02em] ${
@@ -39,26 +45,21 @@ export default function About() {
               } mb-6`}
               style={{ fontFamily: "var(--font-garamond)", fontWeight: 400 }}
             >
-              Your digital partner, rooted in Patna
+              {t("about.labels.rooted", "Your digital partner, rooted in Patna")}
             </h2>
             <p className={`text-[15px] leading-[1.7] ${
               theme === "dark" ? "text-[#b0b0b0]" : "text-[#4e4e4e]"
             } mb-4`}>
-              Aryan Studio was born from a simple belief: great web design
-              shouldn&apos;t be a luxury reserved for big-city businesses. We
-              set out to bring world-class digital craftsmanship to Bihar&apos;s
-              most ambitious entrepreneurs and growing brands.
+              {t("about.labels.para1", "Aryan Studio was born from a simple belief: great web design shouldn't be a luxury reserved for big-city businesses. We set out to bring world-class digital craftsmanship to Bihar's most ambitious entrepreneurs and growing brands.")}
             </p>
             <p className={`text-[15px] leading-[1.7] ${
               theme === "dark" ? "text-[#b0b0b0]" : "text-[#4e4e4e]"
             } mb-8`}>
-              Every project we take on is treated like our own business —
-              obsessing over the details, the copy, the micro-interactions, and
-              most importantly, the results it drives for you.
+              {t("about.labels.para2", "Every project we take on is treated like our own business — obsessing over the details, the copy, the micro-interactions, and most importantly, the results it drives for you.")}
             </p>
             <ul className="flex flex-col gap-3">
-              {highlights.map((h) => (
-                <li key={h} className="flex items-start gap-3">
+              {highlightKeys.map((key) => (
+                <li key={key} className="flex items-start gap-3">
                   <CheckCircle2
                     size={17}
                     className={`${
@@ -69,7 +70,7 @@ export default function About() {
                   <span className={`text-[14px] leading-[1.6] ${
                     theme === "dark" ? "text-[#b0b0b0]" : "text-[#4e4e4e]"
                   }`}>
-                    {h}
+                    {t(key)}
                   </span>
                 </li>
               ))}

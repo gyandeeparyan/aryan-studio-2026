@@ -12,8 +12,7 @@ export function ThemeProvider({ children }) {
   useEffect(() => {
     // Prevent rendering until client-side is ready
     const stored = localStorage.getItem("theme");
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const initialTheme = stored || (prefersDark ? "dark" : "light");
+    const initialTheme = stored || "light";
     setTheme(initialTheme);
     document.documentElement.classList.toggle("dark", initialTheme === "dark");
     setMounted(true);

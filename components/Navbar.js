@@ -3,16 +3,18 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Moon, Sun } from "lucide-react";
+import { Menu, X, Moon, Sun, Globe } from "lucide-react";
 import { useTheme } from "@/lib/ThemeProvider";
+import { useI18n } from "@/lib/I18nProvider";
+import Logo from "@/components/Logo";
 
 const navLinks = [
-  { href: "#services", label: "Services" },
-  { href: "#about", label: "About" },
-  { href: "#projects", label: "Work" },
-  { href: "#pricing", label: "Pricing" },
-  { href: "#team", label: "Team" },
-  { href: "#contact", label: "Contact" },
+  { href: "#services", label: "Services", labelKey: "nav.services" },
+  { href: "#about", label: "About", labelKey: "nav.about" },
+  { href: "#projects", label: "Work", labelKey: "nav.projects" },
+  { href: "#pricing", label: "Pricing", labelKey: "nav.pricing" },
+  { href: "#faqs", label: "FAQs", labelKey: "faqs.title" },
+  { href: "#contact", label: "Contact", labelKey: "nav.contact" },
 ];
 
 export default function Navbar() {
@@ -20,18 +22,34 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const { theme, toggleTheme } = useTheme();
+  const { language, switchLanguage, t, mounted: i18nMounted } = useI18n();
 
   useEffect(() => {
     setMounted(true);
-  }, []);
-
-  useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 0);
     };
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  if (!mounted) {
+    // Return minimal nav to prevent hydration errors
+    return (
+      <header className="fixed top-0 inset-x-0 z-50 h-16" style={{
+        backgroundColor: "rgba(245, 245, 245, 0.97)",
+        backdropFilter: "blur(20px)",
+        WebkitBackdropFilter: "blur(20px)",
+        borderBottom: "1px solid #e7e5e4",
+      }}>
+        <div className="max-w-300 mx-auto px-6 h-full flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <div className="w-9 h-9 rounded-lg bg-linear-to-br from-[#292524] to-[#0c0a09] text-white" />
+          </div>
+        </div>
+      </header>
+    );
+  }
 
   return (
     <header
@@ -50,15 +68,7 @@ export default function Navbar() {
       <div className="max-w-300 mx-auto px-6 h-full flex items-center justify-between">
         {/* Logo */}
         <Link href="#hero" className="flex items-center gap-2.5 group">
-          <span
-            suppressHydrationWarning
-            className={`text-[20px] leading-none tracking-[-0.02em] ${
-              theme === "dark" ? "text-white" : "text-[#0c0a09]"
-            }`}
-            style={{ fontFamily: "var(--font-garamond)", fontWeight: 400 }}
-          >
-            Aryan Studio
-          </span>
+          <Logo />
         </Link>
 
         {/* Desktop Nav */}
@@ -74,17 +84,33 @@ export default function Navbar() {
                   : "text-[#777169] hover:text-[#0c0a09]"
               }`}
             >
-              {link.label}
+              {i18nMounted ? t(link.labelKey, link.label) : link.label}
             </Link>
           ))}
         </nav>
 
-        {/* Desktop CTA + Theme Toggle */}
+        {/* Desktop CTA + Controls */}
         <div className="hidden md:flex items-center gap-3">
+          {/* Language Toggle */}
+          <button
+            suppressHydrationWarning
+            onClick={() => switchLanguage(language === "en" ? "hi" : "en")}
+            className={`p-2 rounded-lg cursor-pointer transition-colors flex items-center gap-1 ${
+              theme === "dark"
+                ? "bg-[#1a1a1a] text-[#b0b0b0] hover:bg-[#2a2a2a]"
+                : "bg-[#f0efed] text-[#777169] hover:bg-[#e7e5e4]"
+            }`}
+            aria-label="Switch language"
+          >
+            <Globe size={18} />
+            <span className="text-xs font-medium">{language.toUpperCase()}</span>
+          </button>
+
+          {/* Theme Toggle */}
           <button
             suppressHydrationWarning
             onClick={toggleTheme}
-            className={`p-2 rounded-lg transition-colors ${
+            className={`p-2 rounded-lg cursor-pointer transition-colors ${
               theme === "dark"
                 ? "bg-[#1a1a1a] text-[#b0b0b0] hover:bg-[#2a2a2a]"
                 : "bg-[#f0efed] text-[#777169] hover:bg-[#e7e5e4]"
@@ -93,6 +119,8 @@ export default function Navbar() {
           >
             {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
           </button>
+
+          {/* CTA Button */}
           <Button
             suppressHydrationWarning
             asChild
@@ -102,7 +130,7 @@ export default function Navbar() {
                 : "bg-[#292524] hover:bg-[#0c0a09]"
             }`}
           >
-            <Link href="#contact">Start a Project</Link>
+            <Link href="#contact">{i18nMounted ? t("common.startProject", "Start a Project") : "Start a Project"}</Link>
           </Button>
         </div>
 
@@ -138,16 +166,31 @@ export default function Navbar() {
               }`}
               onClick={() => setMobileOpen(false)}
             >
-              {link.label}
+              {i18nMounted ? t(link.labelKey, link.label) : link.label}
             </Link>
           ))}
-          <div suppressHydrationWarning className="flex items-center gap-3 mt-2 pt-4 border-t" style={{
+          <div suppressHydrationWarning className="flex items-center gap-2 mt-2 pt-4 border-t flex-wrap" style={{
             borderColor: theme === "dark" ? "#404040" : "#e7e5e4"
           }}>
             <button
               suppressHydrationWarning
+              onClick={() => {
+                switchLanguage(language === "en" ? "hi" : "en");
+              }}
+              className={`p-2 rounded-lg text-sm transition-colors flex items-center gap-1 flex-1 justify-center ${
+                theme === "dark"
+                  ? "bg-[#1a1a1a] text-[#b0b0b0] hover:bg-[#2a2a2a]"
+                  : "bg-[#f0efed] text-[#777169] hover:bg-[#e7e5e4]"
+              }`}
+              aria-label="Switch language"
+            >
+              <Globe size={16} />
+              <span>{language === "en" ? "हिंदी" : "English"}</span>
+            </button>
+            <button
+              suppressHydrationWarning
               onClick={toggleTheme}
-              className={`p-2 rounded-lg transition-colors ${
+              className={`p-2 rounded-lg transition-colors flex-1 ${
                 theme === "dark"
                   ? "bg-[#1a1a1a] text-[#b0b0b0] hover:bg-[#2a2a2a]"
                   : "bg-[#f0efed] text-[#777169] hover:bg-[#e7e5e4]"
@@ -159,14 +202,14 @@ export default function Navbar() {
             <Button
               suppressHydrationWarning
               asChild
-              className={`rounded-full text-white w-fit px-5 h-9 flex-1 transition-colors ${
+              className={`rounded-full text-white text-sm font-medium px-4 h-9 transition-colors duration-200 shadow-none flex-1 ${
                 theme === "dark"
                   ? "bg-[#4a9d6f] hover:bg-[#3a8d5f]"
                   : "bg-[#292524] hover:bg-[#0c0a09]"
               }`}
             >
               <Link href="#contact" onClick={() => setMobileOpen(false)}>
-                Start a Project
+                {i18nMounted ? t("common.startProject", "Start a Project") : "Start a Project"}
               </Link>
             </Button>
           </div>

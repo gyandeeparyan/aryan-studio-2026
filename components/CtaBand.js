@@ -5,14 +5,20 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { useTheme } from "@/lib/ThemeProvider";
+import { useI18n } from "@/lib/I18nProvider";
 
 export default function CtaBand() {
   const { theme } = useTheme();
+  const { t, mounted: i18nMounted } = useI18n();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  if (!mounted || !i18nMounted) {
+    return null;
+  }
 
   return (
     <section suppressHydrationWarning className={`relative ${theme === "dark" ? "bg-[#0c0a09]" : "bg-[#f5f5f5]"} py-24 overflow-hidden transition-colors`}>
@@ -38,7 +44,7 @@ export default function CtaBand() {
             ? "text-[#9a9a9a] bg-[#2a2a2a] border border-[#404040]"
             : "text-[#777169] bg-[#f0efed] border border-[#e7e5e4]"
         } px-3 py-1.5 rounded-full`}>
-          Start Today
+          {t("cta.contact", "Start Today")}
         </span>
         <h2
           className={`text-[clamp(32px,5vw,56px)] leading-[1.06] tracking-tight ${
@@ -46,13 +52,12 @@ export default function CtaBand() {
           } max-w-[20ch]`}
           style={{ fontFamily: "var(--font-garamond)", fontWeight: 400 }}
         >
-          Your next great website is one conversation away.
+          {t("cta.ready", "Your next great website is one conversation away.")}
         </h2>
         <p className={`text-[16px] leading-[1.6] ${
           theme === "dark" ? "text-[#9a9a9a]" : "text-[#4e4e4e]"
         } max-w-[46ch]`}>
-          Whether you need a landing page or a full-stack web app, we&apos;re
-          here to make it happen — on time and on budget.
+          {t("contact.description", "Whether you need a landing page or a full-stack web app, we're here to make it happen — on time and on budget.")}
         </p>
         <div className="flex flex-wrap items-center justify-center gap-4">
           <Button
@@ -64,7 +69,7 @@ export default function CtaBand() {
             }`}
           >
             <Link href="#contact">
-              Start a Project
+              {t("common.startProject", "Start a Project")}
             </Link>
           </Button>
           <Button

@@ -5,6 +5,7 @@ import About from "@/components/About";
 import Projects from "@/components/Projects";
 import Pricing from "@/components/Pricing";
 import Team from "@/components/Team";
+import Faqs from "@/components/Faqs";
 import Contact from "@/components/Contact";
 import CtaBand from "@/components/CtaBand";
 import Footer from "@/components/Footer";
@@ -20,6 +21,8 @@ export default function Home() {
         <About />
         <Projects />
         <Pricing />
+        <Team />
+        <Faqs />
         <Contact />
         <CtaBand />
       </main>

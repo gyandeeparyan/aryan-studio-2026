@@ -1,0 +1,458 @@
+{
+  "en": {
+    "common": {
+      "language": "Language",
+      "english": "English",
+      "hindi": "हिंदी",
+      "startProject": "Start a Project",
+      "viewWork": "View Our Work",
+      "scroll": "Scroll",
+      "availableForProjects": "Available for Projects",
+      "whatWeDo": "What We Do",
+      "ourWork": "Our Work",
+      "aboutUs": "About Us",
+      "getStarted": "Get Started",
+      "mostPopular": "Most Popular",
+      "perProject": "per project"
+    },
+    "hero": {
+      "headline": "We Build Digital Experiences That Actually Work.",
+      "subheadline": "From {location} to the world — {company} crafts fast, modern websites and web applications that drive real results for your business. We specialize in building AI-powered apps with AI models integrated.",
+      "aiHighlight": "AI-powered apps with AI models"
+    },
+    "nav": {
+      "services": "Services",
+      "about": "About",
+      "projects": "Projects",
+      "pricing": "Pricing",
+      "team": "Team",
+      "contact": "Contact"
+    },
+    "services": {
+      "title": "Services that move businesses forward",
+      "description": "We blend strategy, design, and technology to create digital products that your users love.",
+      "labels": {
+        "webDesign": "Web Design & UI/UX",
+        "webDesignDesc": "Pixel-perfect designs crafted for conversions. We build interfaces that look great and feel intuitive.",
+        "webDev": "Web Development",
+        "webDevDesc": "Clean, scalable code built with modern frameworks. Next.js, React, Node.js — we speak every tech stack.",
+        "ecommerce": "E-commerce Solutions",
+        "ecommerceDesc": "Online stores that actually sell. From product pages to checkout, we build end-to-end commerce experiences.",
+        "seo": "SEO & Performance",
+        "seoDesc": "Get found on Google. We optimize every site for speed, accessibility, and search-engine visibility.",
+        "mobile": "Mobile-First Development",
+        "mobileDesc": "Your site looks flawless on every screen — phone, tablet, or desktop. Always responsive, always sharp.",
+        "maintenance": "Maintenance & Support",
+        "maintenanceDesc": "We don't disappear after launch. Ongoing support, updates, and improvements whenever you need us."
+      }
+    },
+    "about": {
+      "title": "Your digital partner, rooted in Patna",
+      "description": "We're a team of passionate developers and designers creating digital solutions",
+      "labels": {
+        "aboutLabel": "About Us",
+        "rooted": "Your digital partner, rooted in Patna",
+        "para1": "Aryan Studio was born from a simple belief: great web design shouldn't be a luxury reserved for big-city businesses. We set out to bring world-class digital craftsmanship to Bihar's most ambitious entrepreneurs and growing brands.",
+        "para2": "Every project we take on is treated like our own business — obsessing over the details, the copy, the micro-interactions, and most importantly, the results it drives for you.",
+        "h1": "Founded in 2022, grown from a solo freelancer to a full team",
+        "h2": "Delivered 50+ projects across retail, education, tourism & tech",
+        "h3": "Deep understanding of Bihar's local business landscape",
+        "h4": "Trusted by clients from Patna, Delhi, and beyond"
+      }
+    },
+    "pricing": {
+      "title": "Pricing Plans",
+      "description": "Transparent pricing. No hidden fees.",
+      "plans": {
+        "starter": {
+          "name": "Starter",
+          "price": "₹8,999",
+          "tagline": "Perfect for freelancers & small businesses.",
+          "features": [
+            "Landing page (up to 5 sections)",
+            "Mobile-responsive design",
+            "Contact form integration",
+            "Basic on-page SEO",
+            "Google Analytics setup",
+            "2 revision rounds",
+            "5-day delivery",
+            "1 month free support"
+          ]
+        },
+        "growth": {
+          "name": "Growth",
+          "price": "₹29,999",
+          "tagline": "For growing businesses ready to scale.",
+          "features": [
+            "Multi-page website (up to 10 pages)",
+            "CMS integration (headless/WordPress)",
+            "Advanced SEO & performance",
+            "Custom animations & interactions",
+            "Blog or product catalog",
+            "Social media integration",
+            "5 revision rounds",
+            "14-day delivery",
+            "3 months free support"
+          ]
+        },
+        "premium": {
+          "name": "Premium",
+          "price": "₹74,999",
+          "tagline": "For brands who need something truly custom.",
+          "features": [
+            "Custom web application",
+            "Full-stack development",
+            "Database design & integration",
+            "Admin dashboard / CMS",
+            "API & third-party integrations",
+            "Authentication & user management",
+            "Advanced SEO & performance",
+            "Unlimited revision rounds",
+            "30-day delivery",
+            "6 months free support"
+          ]
+        }
+      }
+    },
+    "projects": {
+      "title": "Recent Work",
+      "description": "Showcase of projects we're proud of",
+      "labels": {
+        "ourWork": "Our Work",
+        "recentWork": "Recent Work"
+      },
+      "items": [
+        {
+          "category": "Tourism",
+          "title": "Bihar Tourism Portal",
+          "description": "A vibrant digital gateway showcasing Bihar's rich cultural heritage, pilgrimage sites, and wildlife sanctuaries. Fully CMS-managed with multilingual support."
+        },
+        {
+          "category": "Food Tech",
+          "title": "Patna Eats",
+          "description": "A hyperlocal restaurant discovery and food ordering platform for Patna's growing food scene. Real-time order tracking and digital menu management."
+        },
+        {
+          "category": "EdTech",
+          "title": "Vidya Connect",
+          "description": "A comprehensive school management and e-learning platform for 5,000+ students across Bihar. Attendance, grades, and parent communication — all in one place."
+        },
+        {
+          "category": "E-commerce",
+          "title": "ShopLocal Bihar",
+          "description": "An e-commerce marketplace connecting Bihar's local artisans and handloom weavers with buyers across India. 200+ sellers onboarded in the first month."
+        }
+      ]
+    },
+    "faqs": {
+      "title": "Frequently Asked Questions",
+      "description": "Everything you need to know about our services",
+      "questions": [
+        {
+          "q": "What services does Aryan Studio offer?",
+          "a": "We offer web development, landing pages, business websites, e-commerce stores, web applications, and AI-powered solutions. We specialize in modern, high-performance web experiences."
+        },
+        {
+          "q": "How long does a typical project take?",
+          "a": "Project timelines vary based on complexity. A landing page typically takes 2-3 weeks, while custom web applications can take 4-8 weeks. We'll provide a detailed timeline after understanding your requirements."
+        },
+        {
+          "q": "Do you provide ongoing support and maintenance?",
+          "a": "Yes! We offer maintenance packages that include regular updates, performance optimization, security patches, and technical support to keep your website running smoothly."
+        },
+        {
+          "q": "What's your pricing structure?",
+          "a": "Our pricing is project-based and varies depending on complexity, features, and scope. We start from ₹8,000 for landing pages. Contact us for a customized quote based on your needs."
+        },
+        {
+          "q": "Can you help with SEO and performance optimization?",
+          "a": "Absolutely! SEO and performance optimization are integral parts of our process. We build fast, SEO-friendly websites that rank well on Google and provide excellent user experience."
+        },
+        {
+          "q": "Do you build AI-powered applications?",
+          "a": "Yes! We can integrate AI models and create intelligent web applications. From chatbots to predictive analytics, we help bring AI capabilities to your digital products."
+        },
+        {
+          "q": "What technologies do you use?",
+          "a": "We use modern tech stack including React, Next.js, Node.js, Tailwind CSS, and cloud services. We choose the right technology for your specific needs."
+        },
+        {
+          "q": "How do I get started?",
+          "a": "Simply click 'Start a Project' or reach out via email/WhatsApp. We'll schedule a call to understand your vision and provide a customized proposal."
+        }
+      ]
+    },
+    "cta": {
+      "ready": "Ready to transform your vision into reality?",
+      "contact": "Contact us today",
+      "getQuote": "Get a Free Quote"
+    },
+    "contact": {
+      "title": "Let's Work Together",
+      "description": "Have a project in mind? We'd love to help bring it to life.",
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone",
+      "message": "Message",
+      "projectType": "Project Type",
+      "selectService": "Select a service",
+      "messagePlaceholder": "Tell us about your project...",
+      "send": "Send Message",
+      "success": "Message sent successfully!",
+      "successDesc": "Thanks for reaching out. We'll get back to you within 24 hours.",
+      "error": "Failed to send message. Please try again.",
+      "responseTime": "Response time under 24 hours.",
+      "responseDesc": "We're a small team that moves fast. Expect a personalised response — not a template.",
+      "address": "Location"
+    },
+    "footer": {
+      "rights": "All rights reserved.",
+      "followUs": "Follow us on social media",
+      "quickLinks": "Company",
+      "contact": "Hours",
+      "description": "Web development services crafted for Bihar's ambitious businesses. Modern, fast, and built to last.",
+      "ctaDesc": "Free consultation. No commitment. Just a conversation.",
+      "getInTouch": "Get in touch →",
+      "madeIn": "Made with ♥ in Patna, Bihar"
+    }
+  },
+  "hi": {
+    "common": {
+      "language": "भाषा",
+      "english": "English",
+      "hindi": "हिंदी",
+      "startProject": "प्रोजेक्ट शुरू करें",
+      "viewWork": "हमारा काम देखें",
+      "scroll": "स्क्रॉल करें",
+      "availableForProjects": "प्रोजेक्ट के लिए उपलब्ध"
+    },
+    "hero": {
+      "headline": "हम डिजिटल अनुभव बनाते हैं जो वास्तव में काम करते हैं।",
+      "subheadline": "{location} से दुनिया तक — {company} आधुनिक, तेज़ वेबसाइट और वेब एप्लिकेशन बनाता है जो आपके व्यवसाय के लिए वास्तविक परिणाम देते हैं। हम AI-संचालित ऐप्स और एकीकृत AI मॉडल बनाने में माहिर हैं।",
+      "aiHighlight": "AI-संचालित ऐप्स और एकीकृत AI मॉडल"
+    },
+    "nav": {
+      "services": "सेवाएं",
+      "about": "परिचय",
+      "projects": "प्रोजेक्ट्स",
+      "pricing": "मूल्य",
+      "team": "टीम",
+      "contact": "संपर्क"
+    },
+    "common": {
+      "language": "भाषा",
+      "english": "English",
+      "hindi": "हिंदी",
+      "startProject": "प्रोजेक्ट शुरू करें",
+      "viewWork": "हमारा काम देखें",
+      "scroll": "स्क्रॉल करें",
+      "availableForProjects": "प्रोजेक्ट के लिए उपलब्ध",
+      "whatWeDo": "हम क्या करते हैं",
+      "ourWork": "हमारा काम",
+      "aboutUs": "हमारे बारे में",
+      "getStarted": "शुरू करें",
+      "mostPopular": "सबसे लोकप्रिय",
+      "perProject": "प्रति प्रोजेक्ट"
+    },
+    "services": {
+      "title": "व्यवसाय को आगे बढ़ाने वाली सेवाएं",
+      "description": "हम रणनीति, डिज़ाइन और तकनीक को मिलाकर डिजिटल उत्पाद बनाते हैं जो आपके उपयोगकर्ताओं को पसंद आते हैं।",
+      "labels": {
+        "webDesign": "वेब डिजाइन और यूआई/यूएक्स",
+        "webDesignDesc": "रूपांतरण के लिए तैयार किए गए पिक्सल-परफेक्ट डिज़ाइन। हम ऐसे इंटरफेस बनाते हैं जो बेहतरीन दिखते हैं और सहज हैं।",
+        "webDev": "वेब विकास",
+        "webDevDesc": "आधुनिक फ्रेमवर्क से बनाया गया स्वच्छ, स्केलेबल कोड। Next.js, React, Node.js — हम हर तकनीक से बात करते हैं।",
+        "ecommerce": "ई-कॉमर्स समाधान",
+        "ecommerceDesc": "ऑनलाइन स्टोर जो वास्तव में बिक्री करते हैं। प्रोडक्ट पेज से चेकआउट तक, हम अंत-से-अंत वाणिज्य अनुभव बनाते हैं।",
+        "seo": "एसईओ और प्रदर्शन",
+        "seoDesc": "गूगल पर खोजे जाएं। हम गति, पहुंच योग्यता और खोज-इंजन दृश्यता के लिए हर साइट को अनुकूलित करते हैं।",
+        "mobile": "मोबाइल-पहला विकास",
+        "mobileDesc": "आपकी साइट हर स्क्रीन पर निर्बिध दिखती है — फोन, टैबलेट या डेस्कटॉप। हमेशा प्रतिक्रियाशील, हमेशा तीक्ष्ण।",
+        "maintenance": "रखरखाव और समर्थन",
+        "maintenanceDesc": "हम लॉन्च के बाद गायब नहीं होते। आवश्यकता पड़ने पर चल रहे समर्थन, अपडेट और सुधार।"
+      }
+    },
+    "about": {
+      "title": "आपका डिजिटल पार्टनर, पटना में निहित",
+      "description": "हम डिजिटल समाधान बनाने वाले जुनूनी डेवलपर्स और डिज़ाइनर्स की एक टीम हैं",
+      "labels": {
+        "aboutLabel": "हमारे बारे में",
+        "rooted": "आपका डिजिटल पार्टनर, पटना में निहित",
+        "para1": "Aryan Studio एक साधारण विश्वास से पैदा हुआ: महान वेब डिज़ाइन बड़े शहरों के व्यवसायों के लिए आरक्षित विलासिता नहीं होनी चाहिए। हमने बिहार के सबसे महत्वाकांक्षी उद्यमियों और बढ़ते ब्रांडों को विश्व-स्तरीय डिजिटल कारीगरी लाने का लक्ष्य रखा।",
+        "para2": "हम जो हर प्रोजेक्ट लेते हैं, उसे अपने व्यवसाय की तरह मानते हैं — विवरण, कॉपी, माइक्रो-इंटरैक्शन और सबसे महत्वपूर्ण, आपके लिए जो परिणाम मिलते हैं, पर जुनूनी होते हैं।",
+        "h1": "2022 में स्थापित, एकल फ्रीलांसर से पूरी टीम तक विकसित",
+        "h2": "खुदरा, शिक्षा, पर्यटन और प्रौद्योगिकी में 50+ प्रोजेक्ट दिए गए",
+        "h3": "बिहार के स्थानीय व्यवसाय परिदृश्य की गहरी समझ",
+        "h4": "पटना, दिल्ली और उससे परे के क्लाइंट्स द्वारा विश्वास किया जाता है"
+      }
+    },
+    "pricing": {
+      "title": "मूल्य निर्धारण योजनाएं",
+      "description": "पारदर्शी मूल्य निर्धारण। कोई छिपी हुई फीस नहीं।",
+      "plans": {
+        "starter": {
+          "name": "स्टार्टर",
+          "price": "₹8,999",
+          "tagline": "फ्रीलांसर और छोटे व्यवसायों के लिए बिल्कुल सही।",
+          "features": [
+            "लैंडिंग पेज (5 सेक्शन तक)",
+            "मोबाइल-प्रतिक्रियाशील डिज़ाइन",
+            "संपर्क फॉर्म एकीकरण",
+            "बुनियादी ऑन-पेज एसईओ",
+            "गूगल विश्लेषिकी सेटअप",
+            "2 संशोधन राउंड",
+            "5 दिन की डिलीवरी",
+            "1 महीने का निःशुल्क समर्थन"
+          ]
+        },
+        "growth": {
+          "name": "वृद्धि",
+          "price": "₹29,999",
+          "tagline": "बढ़ते व्यवसायों के लिए तैयार है स्केल करने के लिए।",
+          "features": [
+            "बहु-पृष्ठ वेबसाइट (10 पृष्ठ तक)",
+            "सीएमएस एकीकरण (हेडलेस/वर्डप्रेस)",
+            "उन्नत एसईओ और प्रदर्शन",
+            "कस्टम एनिमेशन और इंटरैक्शन",
+            "ब्लॉग या प्रोडक्ट कैटलॉग",
+            "सोशल मीडिया एकीकरण",
+            "5 संशोधन राउंड",
+            "14 दिन की डिलीवरी",
+            "3 महीने का निःशुल्क समर्थन"
+          ]
+        },
+        "premium": {
+          "name": "प्रीमियम",
+          "price": "₹74,999",
+          "tagline": "ब्रांडों के लिए जिन्हें सच में कस्टम की जरूरत है।",
+          "features": [
+            "कस्टम वेब एप्लिकेशन",
+            "फुल-स्टैक विकास",
+            "डेटाबेस डिज़ाइन और एकीकरण",
+            "एडमिन डैशबोर्ड / सीएमएस",
+            "एपीआई और तीसरे पक्ष के एकीकरण",
+            "प्रमाणीकरण और उपयोगकर्ता प्रबंधन",
+            "उन्नत एसईओ और प्रदर्शन",
+            "असीमित संशोधन राउंड",
+            "30 दिन की डिलीवरी",
+            "6 महीने का निःशुल्क समर्थन"
+          ]
+        }
+      }
+    },
+    "projects": {
+      "title": "हाल के काम",
+      "description": "हम जिन प्रोजेक्टों पर गर्व हैं उनका प्रदर्शन",
+      "labels": {
+        "ourWork": "हमारा काम",
+        "recentWork": "हाल के काम"
+      },
+      "items": [
+        {
+          "category": "पर्यटन",
+          "title": "बिहार पर्यटन पोर्टल",
+          "description": "बिहार की समृद्ध सांस्कृतिक विरासत, तीर्थ स्थलों और वन्यजीव अभयारण्यों को प्रदर्शित करने वाला एक जीवंत डिजिटल गेटवे। पूरी तरह से सीएमएस द्वारा प्रबंधित बहुभाषी समर्थन के साथ।"
+        },
+        {
+          "category": "फूड टेक",
+          "title": "पटना खाता है",
+          "description": "पटना के बढ़ते खाद्य दृश्य के लिए एक हाइपरलोकल रेस्तरां खोज और खाद्य ऑर्डरिंग प्लेटफॉर्म। रीयल-टाइम ऑर्डर ट्रैकिंग और डिजिटल मेनू प्रबंधन।"
+        },
+        {
+          "category": "शिक्षा प्रौद्योगिकी",
+          "title": "विद्या कनेक्ट",
+          "description": "बिहार भर में 5,000 से अधिक छात्रों के लिए एक व्यापक स्कूल प्रबंधन और ई-लर्निंग प्लेटफॉर्म। उपस्थिति, ग्रेड और अभिभावक संचार सभी एक जगह में।"
+        },
+        {
+          "category": "ई-कॉमर्स",
+          "title": "शॉपलोकल बिहार",
+          "description": "एक ई-कॉमर्स बाजार जो बिहार के स्थानीय कारीगरों और हथकरघा बुनकरों को भारत भर में खरीदारों से जोड़ता है। पहले महीने में 200+ विक्रेता शामिल।"
+        }
+      ]
+    },
+    "faqs": {
+      "title": "अक्सर पूछे जाने वाले प्रश्न",
+      "description": "हमारी सेवाओं के बारे में सब कुछ जानें",
+      "questions": [
+        {
+          "q": "Aryan Studio कौन सी सेवाएं प्रदान करता है?",
+          "a": "हम वेब विकास, लैंडिंग पेज, बिजनेस वेबसाइट, ई-कॉमर्स स्टोर, वेब एप्लिकेशन और AI-संचालित समाधान प्रदान करते हैं। हम आधुनिक, उच्च-प्रदर्शन वेब अनुभव में माहिर हैं।"
+        },
+        {
+          "q": "एक सामान्य प्रोजेक्ट में कितना समय लगता है?",
+          "a": "प्रोजेक्ट समयरेखा जटिलता के आधार पर भिन्न होती है। एक लैंडिंग पेज आमतौर पर 2-3 सप्ताह लेता है, जबकि कस्टम वेब एप्लिकेशन 4-8 सप्ताह ले सकते हैं। आपकी आवश्यकताओं को समझने के बाद हम विस्तृत समयरेखा प्रदान करेंगे।"
+        },
+        {
+          "q": "क्या आप चल रहे समर्थन और रखरखाव प्रदान करते हैं?",
+          "a": "हां! हम रखरखाव पैकेज प्रदान करते हैं जिसमें नियमित अपडेट, प्रदर्शन अनुकूलन, सुरक्षा पैच और तकनीकी समर्थन शामिल हैं।"
+        },
+        {
+          "q": "आपकी मूल्य निर्धारण संरचना क्या है?",
+          "a": "हमारी मूल्य निर्धारण परियोजना-आधारित है और जटिलता, सुविधाओं और दायरे के आधार पर भिन्न होती है। लैंडिंग पेज के लिए हम ₹8,000 से शुरू करते हैं।"
+        },
+        {
+          "q": "क्या आप SEO और प्रदर्शन अनुकूलन में मदद कर सकते हैं?",
+          "a": "बिल्कुल! SEO और प्रदर्शन अनुकूलन हमारी प्रक्रिया के अभिन्न अंग हैं। हम तेज़, SEO-अनुकूल वेबसाइट बनाते हैं।"
+        },
+        {
+          "q": "क्या आप AI-संचालित एप्लिकेशन बनाते हैं?",
+          "a": "हां! हम AI मॉडल को एकीकृत कर सकते हैं और बुद्धिमान वेब एप्लिकेशन बना सकते हैं। चैटबॉट से लेकर भविष्यसूचक विश्लेषण तक, हम आपके डिजिटल उत्पादों में AI क्षमताएं लाते हैं।"
+        },
+        {
+          "q": "आप कौन सी प्रौद्योगिकियों का उपयोग करते हैं?",
+          "a": "हम React, Next.js, Node.js, Tailwind CSS और क्लाउड सेवाओं सहित आधुनिक तकनीक स्टैक का उपयोग करते हैं।"
+        },
+        {
+          "q": "मैं कैसे शुरू करूं?",
+          "a": "बस 'प्रोजेक्ट शुरू करें' पर क्लिक करें या ईमेल/WhatsApp के माध्यम से संपर्क करें। हम आपकी दृष्टि को समझने के लिए एक कॉल शेड्यूल करेंगे।"
+        }
+      ]
+    },
+    "hero": {
+      "headline": "हम डिजिटल अनुभव बनाते हैं जो वास्तव में काम करते हैं।",
+      "subheadline": "{location} से दुनिया तक — {company} आधुनिक, तेज़ वेबसाइट और वेब एप्लिकेशन बनाता है जो आपके व्यवसाय के लिए वास्तविक परिणाम देते हैं। हम AI-संचालित ऐप्स और एकीकृत AI मॉडल बनाने में माहिर हैं।",
+      "aiHighlight": "AI-संचालित ऐप्स और एकीकृत AI मॉडल"
+    },
+    "nav": {
+      "services": "सेवाएं",
+      "about": "परिचय",
+      "projects": "प्रोजेक्ट्स",
+      "pricing": "मूल्य",
+      "team": "टीम",
+      "contact": "संपर्क"
+    },
+    "cta": {
+      "ready": "अपने विजन को वास्तविकता में बदलने के लिए तैयार हैं?",
+      "contact": "आज ही हमसे संपर्क करें",
+      "getQuote": "मुफ्त उद्धरण प्राप्त करें"
+    },
+    "contact": {
+      "title": "एक साथ काम करते हैं",
+      "description": "क्या आपके मन में कोई प्रोजेक्ट है? हम इसे जीवन में लाने में मदद करना चाहते हैं।",
+      "name": "नाम",
+      "email": "ईमेल",
+      "phone": "फोन",
+      "message": "संदेश",
+      "projectType": "प्रोजेक्ट प्रकार",
+      "selectService": "एक सेवा चुनें",
+      "messagePlaceholder": "अपने प्रोजेक्ट के बारे में बताएं...",
+      "send": "संदेश भेजें",
+      "success": "संदेश सफलतापूर्वक भेजा गया!",
+      "successDesc": "आपके संपर्क के लिए धन्यवाद। हम 24 घंटे के भीतर आपको वापस करेंगे।",
+      "error": "संदेश भेजने में विफल। कृपया दोबारा कोशिश करें।",
+      "responseTime": "24 घंटे के अंदर प्रतिक्रिया समय।",
+      "responseDesc": "हम एक छोटी टीम हैं जो तेजी से काम करती है। व्यक्तिगतकृत प्रतिक्रिया की अपेक्षा करें — टेम्पलेट नहीं।",
+      "address": "स्थान"
+    },
+    "footer": {
+      "rights": "सभी अधिकार सुरक्षित।",
+      "followUs": "हमें सोशल मीडिया पर फॉलो करें",
+      "quickLinks": "कंपनी",
+      "contact": "घंटे",
+      "description": "बिहार के महत्वाकांक्षी व्यवसायों के लिए तैयार वेब विकास सेवाएं। आधुनिक, तेज़ और टिकाऊ।",
+      "ctaDesc": "मुक्त परामर्श। कोई प्रतिबद्धता नहीं। बस एक बातचीत।",
+      "getInTouch": "संपर्क में आएं →",
+      "madeIn": "पटना, बिहार में ♥ से बना"
+    }
+  }
+}

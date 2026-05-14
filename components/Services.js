@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { useTheme } from "@/lib/ThemeProvider";
+import { useI18n } from "@/lib/I18nProvider";
 import {
   Palette,
   Code2,
@@ -12,52 +13,51 @@ import {
   Wrench,
 } from "lucide-react";
 
-const services = [
+const servicesKeys = [
   {
     icon: Palette,
-    title: "Web Design & UI/UX",
-    description:
-      "Pixel-perfect designs crafted for conversions. We build interfaces that look great and feel intuitive.",
+    titleKey: "services.labels.webDesign",
+    descKey: "services.labels.webDesignDesc",
   },
   {
     icon: Code2,
-    title: "Web Development",
-    description:
-      "Clean, scalable code built with modern frameworks. Next.js, React, Node.js — we speak every tech stack.",
+    titleKey: "services.labels.webDev",
+    descKey: "services.labels.webDevDesc",
   },
   {
     icon: ShoppingBag,
-    title: "E-commerce Solutions",
-    description:
-      "Online stores that actually sell. From product pages to checkout, we build end-to-end commerce experiences.",
+    titleKey: "services.labels.ecommerce",
+    descKey: "services.labels.ecommerceDesc",
   },
   {
     icon: Search,
-    title: "SEO & Performance",
-    description:
-      "Get found on Google. We optimize every site for speed, accessibility, and search-engine visibility.",
+    titleKey: "services.labels.seo",
+    descKey: "services.labels.seoDesc",
   },
   {
     icon: Smartphone,
-    title: "Mobile-First Development",
-    description:
-      "Your site looks flawless on every screen — phone, tablet, or desktop. Always responsive, always sharp.",
+    titleKey: "services.labels.mobile",
+    descKey: "services.labels.mobileDesc",
   },
   {
     icon: Wrench,
-    title: "Maintenance & Support",
-    description:
-      "We don't disappear after launch. Ongoing support, updates, and improvements whenever you need us.",
+    titleKey: "services.labels.maintenance",
+    descKey: "services.labels.maintenanceDesc",
   },
 ];
 
 export default function Services() {
   const { theme } = useTheme();
+  const { t, mounted: i18nMounted } = useI18n();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  if (!mounted || !i18nMounted) {
+    return null;
+  }
 
   return (
     <section suppressHydrationWarning id="services" className={`${theme === "dark" ? "bg-[#1a1815]" : "bg-[#fafafa]"} py-24 transition-colors`}>
@@ -69,7 +69,7 @@ export default function Services() {
               ? "text-[#9a9a9a] bg-[#2a2a2a] border border-[#404040]"
               : "text-[#777169] bg-[#f0efed] border border-[#e7e5e4]"
           } px-3 py-1.5 rounded-full`}>
-            What We Do
+            {t("common.whatWeDo", "What We Do")}
           </span>
         </div>
 
@@ -81,23 +81,22 @@ export default function Services() {
             } max-w-[18ch]`}
             style={{ fontFamily: "var(--font-garamond)", fontWeight: 400 }}
           >
-            Services that move businesses forward
+            {t("services.title", "Services that move businesses forward")}
           </h2>
           <p className={`text-[15px] leading-[1.6] ${
             theme === "dark" ? "text-[#9a9a9a]" : "text-[#777169]"
           } max-w-[38ch] md:text-right`}>
-            We blend strategy, design, and technology to create digital products
-            that your users love.
+            {t("services.description", "We blend strategy, design, and technology to create digital products that your users love.")}
           </p>
         </div>
 
         {/* Services grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {services.map((service) => {
+          {servicesKeys.map((service) => {
             const Icon = service.icon;
             return (
               <Card
-                key={service.title}
+                key={service.titleKey}
                 className={`${
                   theme === "dark"
                     ? "bg-[#2a2a2a] border-[#404040] hover:shadow-[0_4px_24px_rgba(0,0,0,0.3)]"
@@ -123,12 +122,12 @@ export default function Services() {
                   <h3 className={`text-[17px] font-medium ${
                     theme === "dark" ? "text-white" : "text-[#0c0a09]"
                   } mb-2.5 leading-tight`}>
-                    {service.title}
+                    {t(service.titleKey)}
                   </h3>
                   <p className={`text-[14px] leading-[1.6] ${
                     theme === "dark" ? "text-[#9a9a9a]" : "text-[#777169]"
                   } tracking-[0.01em]`}>
-                    {service.description}
+                    {t(service.descKey)}
                   </p>
                 </CardContent>
               </Card>

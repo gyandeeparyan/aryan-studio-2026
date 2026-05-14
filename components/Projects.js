@@ -4,53 +4,35 @@ import { useState, useEffect } from "react";
 import { Badge } from "@/components/ui/badge";
 import { ArrowUpRight } from "lucide-react";
 import { useTheme } from "@/lib/ThemeProvider";
-
-const projects = [
-  {
-    category: "Tourism",
-    title: "Bihar Tourism Portal",
-    description:
-      "A vibrant digital gateway showcasing Bihar's rich cultural heritage, pilgrimage sites, and wildlife sanctuaries. Fully CMS-managed with multilingual support.",
-    tags: ["Next.js", "Tailwind CSS", "CMS"],
-    gradient: "radial-gradient(ellipse at 30% 40%, #a7e5d3 0%, transparent 65%)",
-    year: "2024",
-  },
-  {
-    category: "Food Tech",
-    title: "Patna Eats",
-    description:
-      "A hyperlocal restaurant discovery and food ordering platform for Patna's growing food scene. Real-time order tracking and digital menu management.",
-    tags: ["React", "Node.js", "MongoDB"],
-    gradient: "radial-gradient(ellipse at 70% 30%, #f4c5a8 0%, transparent 65%)",
-    year: "2024",
-  },
-  {
-    category: "EdTech",
-    title: "Vidya Connect",
-    description:
-      "A comprehensive school management and e-learning platform for 5,000+ students across Bihar. Attendance, grades, and parent communication — all in one place.",
-    tags: ["Next.js", "PostgreSQL", "AWS"],
-    gradient: "radial-gradient(ellipse at 50% 60%, #c8b8e0 0%, transparent 65%)",
-    year: "2023",
-  },
-  {
-    category: "E-commerce",
-    title: "ShopLocal Bihar",
-    description:
-      "An e-commerce marketplace connecting Bihar's local artisans and handloom weavers with buyers across India. 200+ sellers onboarded in the first month.",
-    tags: ["Next.js", "Stripe", "Prisma"],
-    gradient: "radial-gradient(ellipse at 60% 50%, #a8c8e8 0%, transparent 65%)",
-    year: "2023",
-  },
-];
+import { useI18n } from "@/lib/I18nProvider";
 
 export default function Projects() {
   const { theme } = useTheme();
+  const { t, mounted: i18nMounted } = useI18n();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  if (!mounted || !i18nMounted) {
+    return null;
+  }
+
+  // Get projects from translations
+  const projectItems = t("projects.items") || [];
+
+  const projects = projectItems.map((item, idx) => ({
+    ...item,
+    tags: ["Next.js", "React", "Node.js"],
+    gradient: [
+      "radial-gradient(ellipse at 30% 40%, #a7e5d3 0%, transparent 65%)",
+      "radial-gradient(ellipse at 70% 30%, #f4c5a8 0%, transparent 65%)",
+      "radial-gradient(ellipse at 50% 60%, #c8b8e0 0%, transparent 65%)",
+      "radial-gradient(ellipse at 60% 50%, #a8c8e8 0%, transparent 65%)",
+    ][idx % 4],
+    year: ["2024", "2024", "2023", "2023"][idx % 4],
+  }));
 
   return (
     <section suppressHydrationWarning id="projects" className={`${theme === "dark" ? "bg-[#0c0a09]" : "bg-[#f5f5f5]"} py-24 transition-colors`}>
@@ -62,7 +44,7 @@ export default function Projects() {
               ? "text-[#9a9a9a] bg-[#2a2a2a] border border-[#404040]"
               : "text-[#777169] bg-[#f0efed] border border-[#e7e5e4]"
           } px-3 py-1.5 rounded-full`}>
-            Our Work
+            {t("projects.labels.ourWork", "Our Work")}
           </span>
         </div>
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
@@ -72,12 +54,12 @@ export default function Projects() {
             } max-w-[18ch]`}
             style={{ fontFamily: "var(--font-garamond)", fontWeight: 400 }}
           >
-            Projects we&apos;re proud of
+            {t("projects.title", "Projects we're proud of")}
           </h2>
           <p className={`text-[15px] leading-[1.6] ${
             theme === "dark" ? "text-[#9a9a9a]" : "text-[#777169]"
           } max-w-[36ch] md:text-right`}>
-            A selection of our recent work across industries and technologies.
+            {t("projects.description", "A selection of our recent work across industries and technologies.")}
           </p>
         </div>
 

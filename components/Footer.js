@@ -5,37 +5,43 @@ import { useState, useEffect } from "react";
 import { Phone, Mail, MapPin } from "lucide-react";
 import { companyInfo } from "@/lib/config";
 import { useTheme } from "@/lib/ThemeProvider";
-
-const footerLinks = {
-  Services: [
-    { label: "Web Design", href: "#services" },
-    { label: "Web Development", href: "#services" },
-    { label: "E-commerce", href: "#services" },
-    { label: "SEO & Performance", href: "#services" },
-    { label: "Maintenance", href: "#services" },
-  ],
-  Company: [
-    { label: "About Us", href: "#about" },
-    { label: "Our Work", href: "#projects" },
-    { label: "Pricing", href: "#pricing" },
-    { label: "Team", href: "#team" },
-    { label: "Contact", href: "#contact" },
-  ],
-};
+import { useI18n } from "@/lib/I18nProvider";
 
 export default function Footer() {
   const { theme } = useTheme();
+  const { t, mounted: i18nMounted } = useI18n();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
+  if (!mounted || !i18nMounted) {
+    return null;
+  }
+
+  const footerLinks = {
+    [t("nav.services", "Services")]: [
+      { label: t("services.labels.webDesign", "Web Design"), href: "#services" },
+      { label: t("services.labels.webDev", "Web Development"), href: "#services" },
+      { label: t("services.labels.ecommerce", "E-commerce"), href: "#services" },
+      { label: t("services.labels.seo", "SEO & Performance"), href: "#services" },
+      { label: t("services.labels.maintenance", "Maintenance"), href: "#services" },
+    ],
+    [t("footer.quickLinks", "Company")]: [
+      { label: t("common.aboutUs", "About Us"), href: "#about" },
+      { label: t("projects.labels.ourWork", "Our Work"), href: "#projects" },
+      { label: t("nav.pricing", "Pricing"), href: "#pricing" },
+      { label: t("nav.team", "Team"), href: "#team" },
+      { label: t("nav.contact", "Contact"), href: "#contact" },
+    ],
+  };
+
   return (
     <footer suppressHydrationWarning className={`${
       theme === "dark" ? "bg-[#1a1815] border-[#404040]" : "bg-[#f5f5f5] border-[#e7e5e4]"
     } border-t transition-colors`}>
-      <div className="max-w-300uto px-6 py-16">
+      <div className="max-w-300 mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr_1.5fr] gap-12">
           {/* Brand */}
           <div className="flex flex-col gap-4">
@@ -54,8 +60,7 @@ export default function Footer() {
             <p suppressHydrationWarning className={`text-[13px] leading-[1.7] ${
               theme === "dark" ? "text-[#9a9a9a]" : "text-[#777169]"
             } max-w-[28ch]`}>
-              Web development services crafted for Bihar&apos;s ambitious
-              businesses. Modern, fast, and built to last.
+              {t("footer.description", "Web development services crafted for Bihar's ambitious businesses. Modern, fast, and built to last.")}
             </p>
             <div className="flex flex-col gap-2 mt-2">
               <a
@@ -124,12 +129,12 @@ export default function Footer() {
               className="text-[18px] leading-[1.2] tracking-[-0.01em] text-white"
               style={{ fontFamily: "var(--font-garamond)", fontWeight: 400 }}
             >
-              Ready to start your project?
+              {t("cta.ready", "Ready to start your project?")}
             </p>
             <p className={`text-[12px] ${
               theme === "dark" ? "text-[#9a9a9a]" : "text-[#a8a29e]"
             } leading-[1.6]`}>
-              Free consultation. No commitment. Just a conversation.
+              {t("footer.ctaDesc", "Free consultation. No commitment. Just a conversation.")}
             </p>
             <Link
               href="#contact"
@@ -139,7 +144,7 @@ export default function Footer() {
                   : "bg-white text-[#0c0a09] hover:bg-[#f0efed]"
               }`}
             >
-              Get in touch →
+              {t("footer.getInTouch", "Get in touch →")}
             </Link>
           </div>
         </div>
@@ -151,12 +156,12 @@ export default function Footer() {
           <p className={`text-[12px] ${
             theme === "dark" ? "text-[#707070]" : "text-[#a8a29e]"
           }`}>
-            © {new Date().getFullYear()} {companyInfo.name}. All rights reserved.
+            © {new Date().getFullYear()} {companyInfo.name}. {t("footer.rights", "All rights reserved.")}
           </p>
           <p className={`text-[12px] ${
             theme === "dark" ? "text-[#707070]" : "text-[#a8a29e]"
           }`}>
-            Made with ♥ in Patna, Bihar
+            {t("footer.madeIn", "Made with ♥ in Patna, Bihar")}
           </p>
         </div>
       </div>

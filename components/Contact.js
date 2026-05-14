@@ -7,10 +7,12 @@ import { Textarea } from "@/components/ui/textarea";
 import { MapPin, Phone, Mail, Clock, Send, CheckCircle2 } from "lucide-react";
 import { companyInfo } from "@/lib/config";
 import { useTheme } from "@/lib/ThemeProvider";
+import { useI18n } from "@/lib/I18nProvider";
 import { useGeolocation } from "@/lib/useGeolocation";
 
 export default function Contact() {
   const { theme } = useTheme();
+  const { t, mounted: i18nMounted } = useI18n();
   const { placeName, loading: geoLoading } = useGeolocation();
   const [mounted, setMounted] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -26,28 +28,32 @@ export default function Contact() {
     setMounted(true);
   }, []);
 
+  if (!mounted || !i18nMounted) {
+    return null;
+  }
+
   const contactInfo = [
     {
       icon: Phone,
-      label: "Phone",
+      labelKey: "contact.phone",
       value: companyInfo.contact.phone,
       href: companyInfo.contact.phoneLink,
     },
     {
       icon: Mail,
-      label: "Email",
+      labelKey: "contact.email",
       value: companyInfo.contact.email,
       href: companyInfo.contact.emailLink,
     },
     {
       icon: MapPin,
-      label: "Location",
+      labelKey: "contact.address",
       value: placeName || companyInfo.contact.address,
       href: null,
     },
     {
       icon: Clock,
-      label: "Hours",
+      labelKey: "footer.contact",
       value: companyInfo.contact.hours,
       href: null,
     },
@@ -56,7 +62,6 @@ export default function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // If a lead collection URL is configured, send data there
     if (companyInfo.leadCollectionUrl) {
       try {
         const response = await fetch(companyInfo.leadCollectionUrl, {
@@ -79,7 +84,6 @@ export default function Contact() {
     }
 
     setSubmitted(true);
-    // Reset form after 2 seconds
     setTimeout(() => {
       setForm({ name: "", email: "", phone: "", projectType: "", message: "" });
       setSubmitted(false);
@@ -100,7 +104,7 @@ export default function Contact() {
               ? "text-[#9a9a9a] bg-[#2a2a2a] border border-[#404040]"
               : "text-[#777169] bg-[#f0efed] border border-[#e7e5e4]"
           } px-3 py-1.5 rounded-full`}>
-            Contact
+            {t("nav.contact", "Contact")}
           </span>
         </div>
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
@@ -111,12 +115,12 @@ export default function Contact() {
             } max-w-[18ch]`}
             style={{ fontFamily: "var(--font-garamond)", fontWeight: 400 }}
           >
-            Let&apos;s build something great together
+            {t("contact.title", "Let's Work Together")}
           </h2>
           <p suppressHydrationWarning className={`text-[15px] leading-[1.6] ${
             theme === "dark" ? "text-[#b0b0b0]" : "text-[#777169]"
           } max-w-[38ch] md:text-right`}>
-            Tell us about your project and we&apos;ll get back to you within 24 hours.
+            {t("contact.description", "Have a project in mind? We'd love to help bring it to life.")}
           </p>
         </div>
 
@@ -138,12 +142,12 @@ export default function Contact() {
                   }`}
                   style={{ fontFamily: "var(--font-garamond)", fontWeight: 400 }}
                 >
-                  Message received!
+                  {t("contact.success", "Message received!")}
                 </h3>
                 <p className={`text-[14px] ${
                   theme === "dark" ? "text-[#9a9a9a]" : "text-[#777169]"
                 } max-w-[30ch]`}>
-                  Thanks for reaching out. We&apos;ll get back to you within 24 hours.
+                  {t("contact.successDesc", "Thanks for reaching out. We'll get back to you within 24 hours.")}
                 </p>
               </div>
             ) : (
@@ -153,7 +157,7 @@ export default function Contact() {
                     <label className={`text-[12px] font-medium ${
                       theme === "dark" ? "text-[#b0b0b0]" : "text-[#4e4e4e]"
                     } tracking-[0.02em]`}>
-                      Full Name *
+                      {t("contact.name", "Name")} *
                     </label>
                     <Input
                       suppressHydrationWarning
@@ -161,7 +165,7 @@ export default function Contact() {
                       value={form.name}
                       onChange={handleChange}
                       required
-                      placeholder="Rahul Gupta"
+                      placeholder="Your Name"
                       className={`h-11 rounded-lg ${
                         theme === "dark"
                           ? "border-[#404040] bg-[#1a1a1a] text-white placeholder:text-[#707070]"
@@ -173,7 +177,7 @@ export default function Contact() {
                     <label className={`text-[12px] font-medium ${
                       theme === "dark" ? "text-[#b0b0b0]" : "text-[#4e4e4e]"
                     } tracking-[0.02em]`}>
-                      Email Address *
+                      {t("contact.email", "Email")} *
                     </label>
                     <Input
                       suppressHydrationWarning
@@ -182,7 +186,7 @@ export default function Contact() {
                       value={form.email}
                       onChange={handleChange}
                       required
-                      placeholder="rahul@yourbusiness.com"
+                      placeholder="your@email.com"
                       className={`h-11 rounded-lg ${
                         theme === "dark"
                           ? "border-[#404040] bg-[#1a1a1a] text-white placeholder:text-[#707070]"
@@ -196,7 +200,7 @@ export default function Contact() {
                     <label className={`text-[12px] font-medium ${
                       theme === "dark" ? "text-[#b0b0b0]" : "text-[#4e4e4e]"
                     } tracking-[0.02em]`}>
-                      Phone Number
+                      {t("contact.phone", "Phone")}
                     </label>
                     <Input
                       suppressHydrationWarning
@@ -216,7 +220,7 @@ export default function Contact() {
                     <label className={`text-[12px] font-medium ${
                       theme === "dark" ? "text-[#b0b0b0]" : "text-[#4e4e4e]"
                     } tracking-[0.02em]`}>
-                      Project Type
+                      {t("contact.projectType", "Project Type")}
                     </label>
                     <select
                       suppressHydrationWarning
@@ -229,10 +233,10 @@ export default function Contact() {
                           : "border border-[#d6d3d1] bg-[#fafafa] text-[#0c0a09]"
                       }`}
                     >
-                      <option value="">Select a service</option>
-                      {companyInfo.serviceTypes.map((t) => (
-                        <option key={t} value={t}>
-                          {t}
+                      <option value="">{t("contact.selectService", "Select a service")}</option>
+                      {companyInfo.serviceTypes.map((s) => (
+                        <option key={s} value={s}>
+                          {s}
                         </option>
                       ))}
                     </select>
@@ -242,7 +246,7 @@ export default function Contact() {
                   <label className={`text-[12px] font-medium ${
                     theme === "dark" ? "text-[#b0b0b0]" : "text-[#4e4e4e]"
                   } tracking-[0.02em]`}>
-                    Tell us about your project *
+                    {t("contact.message", "Message")} *
                   </label>
                   <Textarea
                     suppressHydrationWarning
@@ -250,7 +254,7 @@ export default function Contact() {
                     value={form.message}
                     onChange={handleChange}
                     required
-                    placeholder="Describe what you need — type of website, goals, budget, timeline..."
+                    placeholder={t("contact.messagePlaceholder", "Tell us about your project...")}
                     rows={5}
                     className={`rounded-lg ${
                       theme === "dark"
@@ -268,7 +272,7 @@ export default function Contact() {
                       : "bg-[#292524] hover:bg-[#0c0a09]"
                   }`}
                 >
-                  Send Message <Send size={13} className="ml-2" />
+                  {t("contact.send", "Send Message")} <Send size={13} className="ml-2" />
                 </Button>
               </form>
             )}
@@ -299,10 +303,10 @@ export default function Contact() {
                   className="text-[22px] leading-[1.2] tracking-[-0.01em] text-white mb-2"
                   style={{ fontFamily: "var(--font-garamond)", fontWeight: 400 }}
                 >
-                  Response time under 24 hours.
+                  {t("contact.responseTime", "Response time under 24 hours.")}
                 </p>
                 <p className="text-[13px] text-[#a8a29e] leading-[1.6]">
-                  We&apos;re a small team that moves fast. Expect a personalised response — not a template.
+                  {t("contact.responseDesc", "We're a small team that moves fast. Expect a personalised response — not a template.")}
                 </p>
               </div>
             </div>
@@ -311,8 +315,8 @@ export default function Contact() {
             <div className={`${
               theme === "dark" ? "bg-[#2a2a2a] border-[#404040]" : "bg-white border-[#e7e5e4]"
             } rounded-2xl border p-6 flex flex-col gap-5`}>
-              {contactInfo.map(({ icon: Icon, label, value, href }) => (
-                <div key={label} className="flex items-start gap-3.5">
+              {contactInfo.map(({ icon: Icon, labelKey, value, href }) => (
+                <div key={labelKey} className="flex items-start gap-3.5">
                   <div className={`w-8 h-8 rounded-lg ${
                     theme === "dark" ? "bg-[#404040]" : "bg-[#f0efed]"
                   } flex items-center justify-center shrink-0 mt-0.5`}>
@@ -322,7 +326,7 @@ export default function Contact() {
                     <span className={`text-[11px] font-semibold tracking-[0.08em] uppercase ${
                       theme === "dark" ? "text-[#707070]" : "text-[#a8a29e]"
                     }`}>
-                      {label}
+                      {t(labelKey)}
                     </span>
                     {href ? (
                       <a
